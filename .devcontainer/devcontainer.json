@@ -1,0 +1,39 @@
+{
+  "name": "Rust Development Environment",
+  "image": "mcr.microsoft.com/devcontainers/rust:1",
+  "features": {
+    "ghcr.io/devcontainers/features/github-cli:1": {}
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "rust-lang.rust-analyzer",
+        "vadimcn.vscode-lldb",
+        "mutantdino.resourceromulator",
+        "ms-vscode.powershell",
+        "ms-azuretools.vscode-docker",
+        "mtxr.sqltools",
+        "visualstudioexptteam.vscodeintellicode",
+        "eamodio.gitlens"
+      ],
+      "settings": {
+        "editor.formatOnSave": true,
+        "editor.defaultFormatter": "rust-lang.rust-analyzer",
+        "rust-analyzer.checkOnSave.command": "clippy",
+        "rust-analyzer.procMacro.enable": true,
+        "rust-analyzer.cargo.allTargets": true,
+        "rust-analyzer.cargo.features": "all",
+        "rust-analyzer.rustc.source": "channel",
+        "files.associations": {
+          "*.rs": "rust"
+        },
+        "terminal.integrated.defaultProfile.linux": "bash"
+      }
+    }
+  },
+  "postCreateCommand": "cargo --version && rustc --version && rustup update",
+  "portsToForward": [3000, 8080],
+  "remoteUser": "vscode",
+  "workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
+  "workspaceMount": "source=${localWorkspaceFolder},target=/workspaces/${localWorkspaceFolderBasename},type=bind,consistency=local"
+}
